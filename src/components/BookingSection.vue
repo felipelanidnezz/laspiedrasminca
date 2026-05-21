@@ -22,7 +22,7 @@
         </div>
         <div class="contact-line">
           <span class="icon">✉️</span>
-          <span>contacto@laspiedras.co</span>
+          <span>lasantini@yahoo.com</span>
         </div>
       </div>
     </div>
@@ -51,7 +51,7 @@
 
           <!-- Instagram Button -->
           <a 
-            href="https://www.instagram.com/laspiedrasminca" 
+            href="https://www.instagram.com/laspiedrasminca2026?igsh=N2Y0bnhwbGJxOG9j" 
             target="_blank" 
             rel="noopener" 
             class="booking-btn instagram"
@@ -64,7 +64,7 @@
           
           <!-- WhatsApp Button -->
           <a 
-            href="https://wa.me/573000000000" 
+            href="https://wa.me/+57 3152814134" 
             target="_blank" 
             rel="noopener" 
             class="booking-btn whatsapp"
