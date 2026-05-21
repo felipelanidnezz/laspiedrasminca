@@ -63,10 +63,9 @@ const mobileNav = (selector) => {
   top: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(180deg, rgba(26, 19, 13, 0.97) 0%, rgba(26, 19, 13, 0.92) 100%);
-  backdrop-filter: blur(10px);
+  background: transparent;
+  backdrop-filter: blur(6px);
   z-index: 200;
-  border-bottom: 1px solid rgba(201, 168, 76, 0.2);
 }
 
 .nav-container {
@@ -90,6 +89,8 @@ const mobileNav = (selector) => {
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
+  border-radius: 8px;
+  overflow: hidden;
   &:hover { transform: scale(1.05); }
 }
 
