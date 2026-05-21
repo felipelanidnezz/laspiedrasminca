@@ -66,6 +66,7 @@ const mobileNav = (selector) => {
   background: transparent;
   backdrop-filter: blur(6px);
   z-index: 200;
+  isolation: isolate;
 }
 
 .nav-container {
@@ -109,7 +110,8 @@ const mobileNav = (selector) => {
   flex: 1;
 
   a {
-    color: var(--cream);
+    color: #ffffff;
+    mix-blend-mode: difference;
     text-decoration: none;
     font-size: 0.9rem;
     text-transform: uppercase;
@@ -128,8 +130,9 @@ const mobileNav = (selector) => {
       transition: width 0.3s ease;
     }
     &:hover {
+      mix-blend-mode: normal;
       color: var(--gold);
-      &::after { width: 100%; }
+      &::after { width: 100%; background: var(--gold); mix-blend-mode: normal; }
     }
   }
 }
@@ -144,7 +147,8 @@ const mobileNav = (selector) => {
 .lang-btn {
   background: rgba(255,255,255,0.03);
   border: 1px solid rgba(201, 168, 76, 0.25);
-  color: var(--cream);
+  color: #ffffff;
+  mix-blend-mode: difference;
   padding: 0.3rem 0.6rem;
   font-size: 0.75rem;
   cursor: pointer;
@@ -155,6 +159,7 @@ const mobileNav = (selector) => {
   border-radius: 6px;
 
   &:hover {
+    mix-blend-mode: normal;
     border-color: var(--gold);
     color: var(--gold);
   }
