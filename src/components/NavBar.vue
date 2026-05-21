@@ -89,17 +89,17 @@ const mobileNav = (selector) => {
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
-  border-radius: 8px;
+  border-radius: 6px;
   overflow: hidden;
   &:hover { transform: scale(1.05); }
 }
 
-/* make the logo sit inside a small translucent rounded container */
+/* remove extra container background so only the image shows */
 .nav-logo {
-  padding: 6px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.06);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  padding: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .nav-links {
