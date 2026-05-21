@@ -34,13 +34,13 @@ const scroll = (selector) => {
 .hero {
   position: relative;
   height: 100vh;
+  min-height: 600px;
   background: linear-gradient(135deg, rgba(26, 19, 13, 0.4), rgba(58, 90, 64, 0.3)), url('/IMG_9894.JPG') center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   color: var(--cream);
-  margin-top: 60px;
   overflow: hidden;
   
   .hero-bg {
@@ -145,7 +145,6 @@ const scroll = (selector) => {
 
 @media (max-width: 900px) {
   .hero {
-    margin-top: 58px;
     .hero-title { font-size: 2.8rem; }
     .hero-sub { font-size: 1rem; }
     .scroll-hint { display: none; }
@@ -154,7 +153,6 @@ const scroll = (selector) => {
 
 @media (max-width: 640px) {
   .hero {
-    margin-top: 52px;
     .hero-content { padding: 0 1.2rem; }
     .hero-tag { font-size: 0.7rem; letter-spacing: 1.5px; }
     .hero-title { font-size: 2.1rem; letter-spacing: 0; }

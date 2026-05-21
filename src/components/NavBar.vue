@@ -1,7 +1,7 @@
 <template>
-  <nav class="navbar">
+  <nav class="navbar" :class="{ scrolled: isScrolled }">
     <div class="nav-container">
-      <a href="#" class="nav-logo">
+      <a href="#" class="nav-logo" @click.prevent="scroll('body')">
         <img src="/logo_laspiedrasminca.png" alt="Las Piedras Minca Logo" class="logo-img">
       </a>
 
@@ -39,14 +39,32 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeUnmount } from 'vue'
 
 defineProps({ lang: String })
 defineEmits(['toggle-lang'])
 
 const menuOpen = ref(false)
+const isScrolled = ref(false)
+
+const handleScroll = () => {
+  isScrolled.value = window.scrollY > 80
+}
+
+onMounted(() => {
+  window.addEventListener('scroll', handleScroll, { passive: true })
+  handleScroll()
+})
+
+onBeforeUnmount(() => {
+  window.removeEventListener('scroll', handleScroll)
+})
 
 const scroll = (selector) => {
+  if (selector === 'body') {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+    return
+  }
   const el = document.querySelector(selector)
   if (el) el.scrollIntoView({ behavior: 'smooth' })
 }
@@ -64,16 +82,38 @@ const mobileNav = (selector) => {
   left: 0;
   right: 0;
   background: transparent;
-  backdrop-filter: blur(6px);
   z-index: 200;
   isolation: isolate;
+  transition: background 0.4s ease, backdrop-filter 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  border-bottom: 1px solid transparent;
+
+  /* Subtle dark gradient so text is always readable over the hero image */
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(26, 19, 13, 0.55) 0%, rgba(26, 19, 13, 0.25) 60%, rgba(26, 19, 13, 0) 100%);
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: -1;
+  }
+
+  &.scrolled {
+    background: rgba(26, 19, 13, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom-color: rgba(201, 168, 76, 0.15);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+
+    &::before { opacity: 0; }
+  }
 }
 
 .nav-container {
   display: flex;
   align-items: center;
   gap: 2rem;
-  max-width: 1200px;
+  max-width: 1280px;
   margin: 0 auto;
   padding: 0.9rem 3rem;
 }
@@ -83,24 +123,18 @@ const mobileNav = (selector) => {
   align-items: center;
   text-decoration: none;
   flex-shrink: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .logo-img {
-  height: 44px;
+  height: 48px;
   width: auto;
   object-fit: contain;
-  transition: transform 0.3s ease;
-  border-radius: 6px;
-  overflow: hidden;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
   &:hover { transform: scale(1.05); }
-}
-
-/* remove extra container background so only the image shows */
-.nav-logo {
-  padding: 0;
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
 }
 
 .nav-links {
@@ -108,65 +142,70 @@ const mobileNav = (selector) => {
   list-style: none;
   gap: 2.5rem;
   flex: 1;
+  justify-content: center;
 
   a {
-    color: #ffffff;
-    mix-blend-mode: difference;
+    color: #f5efe6;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 1.5px;
+    font-weight: 500;
+    font-family: 'Cormorant Garamond', serif;
     position: relative;
     transition: color 0.3s ease;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
 
     &::after {
       content: '';
       position: absolute;
-      bottom: -4px;
-      left: 0;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
       width: 0;
       height: 1px;
       background: var(--gold);
       transition: width 0.3s ease;
     }
     &:hover {
-      mix-blend-mode: normal;
       color: var(--gold);
-      &::after { width: 100%; background: var(--gold); mix-blend-mode: normal; }
+      &::after { width: 100%; }
     }
   }
 }
 
 .lang-selector {
-  margin-left: auto;
   display: flex;
   gap: 0.4rem;
   flex-shrink: 0;
 }
 
 .lang-btn {
-  background: rgba(255,255,255,0.03);
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  color: #ffffff;
-  mix-blend-mode: difference;
-  padding: 0.3rem 0.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(245, 239, 230, 0.35);
+  color: #f5efe6;
+  padding: 0.35rem 0.7rem;
   font-size: 0.75rem;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: 'Cormorant Garamond', serif;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  border-radius: 6px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
+  border-radius: 4px;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
 
   &:hover {
-    mix-blend-mode: normal;
     border-color: var(--gold);
     color: var(--gold);
+    background: rgba(201, 168, 76, 0.1);
   }
   &.active {
     background: var(--gold);
     color: var(--dark);
     border-color: var(--gold);
+    box-shadow: 0 2px 8px rgba(201, 168, 76, 0.4);
   }
 }
 
@@ -190,6 +229,7 @@ const mobileNav = (selector) => {
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     transform-origin: center;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 
     &.open:nth-child(1) { transform: translateY(9px) rotate(45deg); }
     &.open:nth-child(2) { opacity: 0; transform: scaleX(0); }
@@ -204,10 +244,12 @@ const mobileNav = (selector) => {
   max-height: 0;
   transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background: rgba(26, 19, 13, 0.98);
-  border-top: 1px solid rgba(201, 168, 76, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(201, 168, 76, 0.15);
 
   &.active {
-    max-height: 300px;
+    max-height: 320px;
   }
 
   ul {
@@ -240,8 +282,8 @@ const mobileNav = (selector) => {
     padding: 0.8rem 1.5rem;
     gap: 1rem;
   }
-  .logo-img { height: 38px; }
-  .nav-links { gap: 1.5rem; a { font-size: 0.82rem; } }
+  .logo-img { height: 42px; }
+  .nav-links { gap: 1.5rem; a { font-size: 0.8rem; letter-spacing: 1.2px; } }
 }
 
 @media (max-width: 640px) {
@@ -252,6 +294,8 @@ const mobileNav = (selector) => {
   .nav-container {
     padding: 0.75rem 1.2rem;
   }
-  .logo-img { height: 36px; }
+  .logo-img { height: 38px; }
+
+  .lang-selector { margin-left: auto; margin-right: 0.5rem; }
 }
 </style>
