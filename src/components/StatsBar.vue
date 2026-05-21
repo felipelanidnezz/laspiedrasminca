@@ -38,11 +38,10 @@ defineProps({
   gap: clamp(1rem, 3vw, 2rem);
   text-align: center;
   color: var(--cream);
-  flex-wrap: wrap;
 }
 
 .stat-item {
-  flex: 1 1 calc(50% - 1rem);
+  flex: 1 1 0;
   min-width: 0;
 
   h3 {
