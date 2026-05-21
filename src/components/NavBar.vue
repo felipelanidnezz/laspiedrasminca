@@ -132,9 +132,13 @@ const mobileNav = (selector) => {
   height: 48px;
   width: auto;
   object-fit: contain;
-  transition: transform 0.3s ease, filter 0.3s ease;
+  border-radius: 12px;
+  transition: transform 0.3s ease, filter 0.3s ease, box-shadow 0.3s ease;
   filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
-  &:hover { transform: scale(1.05); }
+  &:hover {
+    transform: scale(1.05);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.45));
+  }
 }
 
 .nav-links {

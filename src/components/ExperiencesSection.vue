@@ -6,19 +6,19 @@
 
     <div class="experience-grid">
       <div class="experience-card">
-        <img :src="'/IMG_9894.JPG'" alt="Morning" class="exp-img" loading="lazy" decoding="async">
+        <img :src="'/IMG_9894.JPG'" alt="Amanecer junto al río en Las Piedras Minca, hospedaje natural en Santa Marta" class="exp-img" loading="lazy" decoding="async">
         <h3>{{ lang === 'es' ? 'Despierta al sonido del río' : 'Wake to the river' }}</h3>
         <p>{{ lang === 'es' ? 'La corriente llega antes que cualquier alarma. Observa cómo la luz de la mañana atraviesa el dosel de la selva.' : 'The current arrives before any alarm. Watch morning light pierce the jungle canopy.' }}</p>
       </div>
       
       <div class="experience-card">
-        <img :src="'/IMG_9872.JPG'" alt="Afternoon" class="exp-img" loading="lazy" decoding="async">
+        <img :src="'/IMG_9872.JPG'" alt="Piscina artesanal de mosaico en cabañas Las Piedras Minca" class="exp-img" loading="lazy" decoding="async">
         <h3>{{ lang === 'es' ? 'Sumérgete en el mosaico' : 'Immerse in the mosaic' }}</h3>
         <p>{{ lang === 'es' ? 'La piscina artesanal te espera. Sus bordes de cerámica reflejan la selva.' : 'The handmade pool awaits. Ceramic edges reflect the jungle.' }}</p>
       </div>
       
       <div class="experience-card">
-        <img :src="'/IMG_9890.JPG'" alt="Night" class="exp-img" loading="lazy" decoding="async">
+        <img :src="'/IMG_9890.JPG'" alt="Noche estrellada en hospedaje ecológico de Minca, Sierra Nevada" class="exp-img" loading="lazy" decoding="async">
         <h3>{{ lang === 'es' ? 'Encuentro nocturno' : 'Night gathering' }}</h3>
         <p>{{ lang === 'es' ? 'Alrededor de la fogata, las historias cobran vida. Conversaciones profundas bajo un cielo de infinitas estrellas.' : 'Around the bonfire, stories come to life. Deep conversations under an infinite sky of stars.' }}</p>
       </div>

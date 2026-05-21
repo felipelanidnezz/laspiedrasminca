@@ -12,9 +12,9 @@
       <p v-else>Welcome to a place like no other.</p>
     </div>
     <div class="about-images">
-      <div class="about-img"><img :src="'/IMG_9853.JPG'" alt="Room" loading="lazy" decoding="async"></div>
-      <div class="about-img"><img :src="'/IMG_9865.JPG'" alt="Pool" loading="lazy" decoding="async"></div>
-      <div class="about-img"><img :src="'/IMG_9840.JPG'" alt="Kitchen" loading="lazy" decoding="async"></div>
+      <div class="about-img"><img :src="'/IMG_9853.JPG'" alt="Habitación artesanal de cabaña en Las Piedras Minca, Sierra Nevada de Santa Marta" loading="lazy" decoding="async"></div>
+      <div class="about-img"><img :src="'/IMG_9865.JPG'" alt="Piscina natural de mosaico junto al río en Minca, Colombia" loading="lazy" decoding="async"></div>
+      <div class="about-img"><img :src="'/IMG_9840.JPG'" alt="Cocina rústica de cabaña ecológica en Minca" loading="lazy" decoding="async"></div>
     </div>
   </section>
 </template>

@@ -19,7 +19,7 @@
           :key="idx" 
           class="gallery-item-card"
         >
-          <img :src="img" class="gallery-img" :alt="`Las Piedras ${idx}`" loading="lazy">
+          <img :src="img" class="gallery-img" :alt="`Cabañas Las Piedras Minca - hospedaje artesanal en Minca, Santa Marta (imagen ${idx + 1})`" loading="lazy">
         </div>
       </div>
       
