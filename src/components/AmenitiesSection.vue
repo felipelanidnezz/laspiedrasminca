@@ -28,76 +28,75 @@ const amenities = [
 
 <style lang="scss" scoped>
 .amenities {
-  padding: 5rem 3rem;
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.2rem, 4vw, 3rem);
   background: var(--dark);
   color: var(--cream);
   text-align: center;
-  
+
   h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: var(--fs-h2);
     margin-bottom: 1.5rem;
     color: var(--gold);
+    line-height: 1.15;
   }
-  
+
   .divider {
     width: 60px;
     height: 2px;
     background: linear-gradient(to right, var(--gold), transparent);
-    margin: 0 auto 3rem;
+    margin: 0 auto clamp(2rem, 5vw, 3rem);
   }
 }
 
 .amenities-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
+  gap: clamp(1rem, 2.5vw, 2rem);
   margin-top: 2rem;
 }
 
 .amenity-item {
-  padding: 2rem;
+  padding: clamp(1.2rem, 3vw, 2rem);
   border: 1px solid rgba(201, 168, 76, 0.3);
-  border-radius: 8px;
+  border-radius: 12px;
   transition: all 0.3s ease;
   cursor: pointer;
-  
-  &:hover {
+
+  &:hover, &:focus-within {
     background: rgba(201, 168, 76, 0.1);
     border-color: var(--gold);
     transform: translateY(-5px);
   }
-  
+
   .amenity-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    font-size: clamp(1.6rem, 4vw, 2rem);
+    margin-bottom: 0.8rem;
   }
-  
+
   h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 2.6vw, 1.15rem);
     margin-bottom: 0.5rem;
     color: var(--gold);
+    line-height: 1.25;
   }
-  
+
   p {
-    font-size: 0.9rem;
-    color: rgba(245, 239, 230, 0.55);
-    line-height: 1.6;
+    font-size: clamp(0.82rem, 2.2vw, 0.92rem);
+    color: rgba(245, 239, 230, 0.6);
+    line-height: 1.55;
+    text-wrap: pretty;
   }
 }
 
 @media (max-width: 900px) {
-  .amenities {
-    padding: 3rem 1.5rem;
-  }
-  
   .amenities-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 380px) {
   .amenities-grid {
     grid-template-columns: 1fr;
   }

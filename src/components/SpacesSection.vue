@@ -36,66 +36,69 @@ const spaces = computed(() => [
 
 <style lang="scss" scoped>
 .spaces {
-  padding: 5rem 3rem;
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.2rem, 4vw, 3rem);
   background: linear-gradient(180deg, #f5efe6 0%, #f0e6d6 100%);
   text-align: center;
 
   .section-tag {
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.78rem);
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 1rem;
   }
-  
+
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: var(--fs-h2);
     color: var(--dark);
     margin-bottom: 1.5rem;
+    line-height: 1.15;
+    text-wrap: balance;
   }
-  
+
   .divider {
     width: 60px;
     height: 2px;
     background: linear-gradient(to right, var(--gold), transparent);
-    margin: 0 auto 3rem;
+    margin: 0 auto clamp(2rem, 5vw, 3rem);
   }
 }
 
 .spaces-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 2rem;
+  gap: clamp(1rem, 2.5vw, 2rem);
   margin-top: 2rem;
 }
 
 .space-card {
   position: relative;
-  height: 350px;
+  height: clamp(260px, 32vw, 380px);
   background-size: cover;
   background-position: center;
-  border-radius: 8px;
+  border-radius: 12px;
   overflow: hidden;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-  
-  &:hover {
-    transform: scale(1.02);
+
+  &:hover, &:focus-within {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.22);
   }
-  
+
   &::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(26, 19, 13, 0.3), rgba(58, 90, 64, 0.4));
+    background: linear-gradient(180deg, rgba(26, 19, 13, 0.15) 0%, rgba(26, 19, 13, 0.65) 100%);
     transition: background 0.3s ease;
     z-index: 1;
   }
-  
+
   &:hover::before {
-    background: linear-gradient(135deg, rgba(26, 19, 13, 0.5), rgba(58, 90, 64, 0.6));
+    background: linear-gradient(180deg, rgba(26, 19, 13, 0.3) 0%, rgba(26, 19, 13, 0.8) 100%);
   }
 }
 
@@ -105,7 +108,11 @@ const spaces = computed(() => [
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.3s ease;
+  transition: transform 0.5s ease;
+}
+
+.space-card:hover .space-image {
+  transform: scale(1.06);
 }
 
 .space-overlay {
@@ -114,34 +121,47 @@ const spaces = computed(() => [
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   text-align: center;
   color: var(--cream);
-  padding: 2rem;
+  padding: clamp(1rem, 3vw, 1.8rem);
   z-index: 2;
 }
 
 .space-icon {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
+  font-size: clamp(1.6rem, 4vw, 2rem);
+  margin-bottom: 0.4rem;
+  filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.5));
 }
 
 .space-name {
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  margin-bottom: 0.5rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  margin-bottom: 0.4rem;
+  line-height: 1.2;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .space-desc {
-  font-size: 0.95rem;
-  opacity: 0;
+  font-size: clamp(0.85rem, 2vw, 0.95rem);
+  opacity: 1; /* always visible on touch */
   transition: opacity 0.3s ease;
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  line-height: 1.4;
+  max-width: 90%;
 }
 
-.space-card:hover .space-desc {
-  opacity: 1;
+/* Only hide-on-hover on real hover devices (desktop) */
+@media (hover: hover) and (pointer: fine) {
+  .space-desc {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+  .space-card:hover .space-desc {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @media (max-width: 900px) {
@@ -150,13 +170,13 @@ const spaces = computed(() => [
   }
 }
 
-@media (max-width: 600px) {
-  .spaces {
-    padding: 3rem 1.5rem;
-  }
-  
+@media (max-width: 560px) {
   .spaces-grid {
     grid-template-columns: 1fr;
+    gap: 1.1rem;
+  }
+  .space-card {
+    height: 260px;
   }
 }
 </style>

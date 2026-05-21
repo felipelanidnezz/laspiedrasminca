@@ -27,70 +27,72 @@ defineProps({
 
 <style lang="scss" scoped>
 .about {
-  padding: 5rem 3rem;
+  padding: clamp(3rem, 7vw, 5rem) clamp(1.2rem, 4vw, 3rem);
   background: linear-gradient(135deg, #1a130d 0%, #221810 50%, #1e1a0f 100%);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
   color: var(--cream);
-  
+
   .about-text {
     p {
-      font-size: 1.1rem;
+      font-size: var(--fs-body);
       font-weight: 300;
-      line-height: 1.8;
-      color: rgba(245, 239, 230, 0.8);
+      line-height: 1.75;
+      color: rgba(245, 239, 230, 0.82);
       margin-bottom: 1rem;
+      text-wrap: pretty;
     }
   }
-  
+
   .section-tag {
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.78rem);
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 1rem;
   }
-  
+
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: var(--fs-h2);
     color: var(--cream);
     margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.15;
+    text-wrap: balance;
   }
-  
+
   .divider {
     width: 60px;
     height: 2px;
     background: linear-gradient(to right, var(--gold), transparent);
     margin-bottom: 1.5rem;
   }
-  
+
   .about-images {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 220px 220px;
     gap: 15px;
   }
-  
+
   .about-img {
     overflow: hidden;
-    border-radius: 4px;
+    border-radius: 8px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-    
+
     img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
     }
-    
+
     &:hover img {
       transform: scale(1.07);
     }
-    
+
     &:first-child {
       grid-row: span 2;
     }
@@ -100,12 +102,25 @@ defineProps({
 @media (max-width: 900px) {
   .about {
     grid-template-columns: 1fr;
-    gap: 3rem;
-    padding: 3rem 1.5rem;
-    
     .about-images {
-      grid-template-rows: 180px 180px;
+      grid-template-rows: 200px 200px;
     }
+  }
+}
+
+@media (max-width: 640px) {
+  .about {
+    gap: 2rem;
+    .about-images {
+      gap: 10px;
+      grid-template-rows: 150px 150px;
+    }
+  }
+}
+
+@media (max-width: 380px) {
+  .about .about-images {
+    grid-template-rows: 130px 130px;
   }
 }
 </style>

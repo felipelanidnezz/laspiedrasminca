@@ -94,11 +94,11 @@ defineProps({
 
 <style lang="scss" scoped>
 .booking {
-  padding: 6rem 4rem;
+  padding: clamp(3rem, 7vw, 6rem) clamp(1.2rem, 4vw, 4rem);
   background: linear-gradient(135deg, #1a130d 0%, #1e1711 100%);
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: 5rem;
+  gap: clamp(2.5rem, 6vw, 5rem);
   color: var(--cream);
   align-items: center;
   border-bottom: 1px solid rgba(201, 168, 76, 0.1);
@@ -106,32 +106,34 @@ defineProps({
 
 .booking-left {
   .section-tag {
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.78rem);
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 1rem;
   }
-  
+
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.8rem;
+    font-size: var(--fs-h2);
     margin-bottom: 1.5rem;
-    line-height: 1.2;
+    line-height: 1.15;
+    text-wrap: balance;
   }
-  
+
   .divider {
     width: 60px;
     height: 2px;
     background: linear-gradient(to right, var(--gold), transparent);
     margin-bottom: 2rem;
   }
-  
+
   .booking-desc {
-    font-size: 1.05rem;
-    line-height: 1.8;
-    color: rgba(245, 239, 230, 0.75);
-    margin-bottom: 2.5rem;
+    font-size: var(--fs-body);
+    line-height: 1.75;
+    color: rgba(245, 239, 230, 0.78);
+    margin-bottom: clamp(1.6rem, 4vw, 2.5rem);
+    text-wrap: pretty;
   }
 }
 
@@ -143,15 +145,20 @@ defineProps({
 
 .contact-line {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-  font-size: 1rem;
-  
+  align-items: flex-start;
+  gap: 0.85rem;
+  font-size: clamp(0.92rem, 2.4vw, 1rem);
+  line-height: 1.45;
+  word-break: break-word;
+  overflow-wrap: anywhere;
+
   .icon {
-    font-size: 1.3rem;
-    min-width: 32px;
+    font-size: 1.25rem;
+    min-width: 28px;
+    flex-shrink: 0;
+    line-height: 1.3;
   }
-  
+
   span:last-child {
     color: rgba(245, 239, 230, 0.9);
   }
@@ -162,8 +169,10 @@ defineProps({
     transition: color 0.2s ease;
     border-bottom: 1px dashed rgba(201, 168, 76, 0.35);
     padding-bottom: 1px;
+    min-height: 28px;
+    display: inline-block;
 
-    &:hover {
+    &:hover, &:focus-visible {
       color: var(--gold);
       border-bottom-color: var(--gold);
     }
@@ -173,52 +182,59 @@ defineProps({
 .booking-card {
   background: rgba(26, 19, 13, 0.4);
   border: 1px solid rgba(201, 168, 76, 0.2);
-  padding: 3.5rem 2.5rem;
+  padding: clamp(1.8rem, 5vw, 3.5rem) clamp(1.2rem, 4vw, 2.5rem);
   border-radius: 16px;
   box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
   text-align: center;
   backdrop-filter: blur(10px);
-  
+  -webkit-backdrop-filter: blur(10px);
+
   .card-title {
     font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
+    font-size: clamp(1.35rem, 4vw, 1.8rem);
     color: var(--cream);
     margin-bottom: 0.6rem;
+    line-height: 1.2;
   }
-  
+
   .card-subtitle {
-    font-size: 0.95rem;
-    color: rgba(245, 239, 230, 0.6);
-    margin-bottom: 2.5rem;
+    font-size: clamp(0.85rem, 2.3vw, 0.95rem);
+    color: rgba(245, 239, 230, 0.65);
+    margin-bottom: clamp(1.5rem, 4vw, 2.5rem);
     line-height: 1.5;
+    text-wrap: pretty;
   }
 }
 
 .booking-actions {
   display: flex;
   flex-direction: column;
-  gap: 1.2rem;
-  margin-bottom: 2rem;
+  gap: 0.9rem;
+  margin-bottom: 1.5rem;
 }
 
 .booking-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.8rem;
+  gap: 0.7rem;
   text-decoration: none;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
-  font-size: 1.05rem;
-  padding: 1rem 2rem;
-  border-radius: 8px;
+  font-size: clamp(0.92rem, 2.4vw, 1.05rem);
+  padding: clamp(0.85rem, 2.5vw, 1rem) clamp(1rem, 3vw, 2rem);
+  border-radius: 10px;
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
   width: 100%;
   box-sizing: border-box;
-  
+  min-height: 50px;
+  line-height: 1.2;
+  text-align: center;
+
   .btn-icon {
     width: 20px;
     height: 20px;
+    flex-shrink: 0;
   }
   
   &.airbnb {
@@ -264,8 +280,8 @@ defineProps({
 }
 
 .card-footer-note {
-  font-size: 0.8rem;
-  color: rgba(201, 168, 76, 0.6);
+  font-size: clamp(0.72rem, 2vw, 0.8rem);
+  color: rgba(201, 168, 76, 0.65);
   line-height: 1.4;
   margin: 0;
 }
@@ -273,35 +289,15 @@ defineProps({
 @media (max-width: 900px) {
   .booking {
     grid-template-columns: 1fr;
-    gap: 3rem;
-    padding: 4rem 1.5rem;
-  }
-  
-  .booking-left {
-    .section-title { font-size: 2.2rem; }
-  }
-  
-  .booking-card {
-    padding: 2.5rem 1.8rem;
   }
 }
 
-@media (max-width: 640px) {
-  .booking {
-    padding: 3rem 1.2rem;
-    gap: 2rem;
-  }
-  .booking-left {
-    .section-title { font-size: 1.8rem; }
-    .booking-desc { font-size: 0.95rem; }
-  }
-  .booking-card {
-    padding: 2rem 1.2rem;
-    .card-title { font-size: 1.5rem; }
-  }
+@media (max-width: 380px) {
   .booking-btn {
-    font-size: 0.95rem;
-    padding: 0.9rem 1.2rem;
+    gap: 0.45rem;
+    padding: 0.85rem 0.75rem;
+    font-size: 0.88rem;
+    .btn-icon { width: 18px; height: 18px; }
   }
 }
 </style>

@@ -75,7 +75,7 @@ const images = [
 <style lang="scss" scoped>
 .gallery-strip-wrapper {
   background: var(--cream);
-  padding: 5rem 0;
+  padding: clamp(2.5rem, 6vw, 5rem) 0;
   overflow: hidden;
   border-top: 1px solid rgba(201, 168, 76, 0.15);
   border-bottom: 1px solid rgba(201, 168, 76, 0.15);
@@ -83,24 +83,26 @@ const images = [
 
 .gallery-header {
   text-align: center;
-  margin-bottom: 3rem;
-  padding: 0 2rem;
-  
+  margin-bottom: clamp(2rem, 5vw, 3rem);
+  padding: 0 clamp(1rem, 4vw, 2rem);
+
   .gallery-tag {
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.78rem);
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 0.8rem;
   }
-  
+
   .gallery-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: var(--fs-h2);
     color: var(--dark);
     margin-bottom: 1.2rem;
+    line-height: 1.15;
+    text-wrap: balance;
   }
-  
+
   .divider {
     width: 60px;
     height: 2px;
@@ -112,7 +114,7 @@ const images = [
 .gallery-carousel-container {
   position: relative;
   width: 100%;
-  padding: 0 4rem;
+  padding: 0 clamp(0.5rem, 4vw, 4rem);
   display: flex;
   align-items: center;
 }
@@ -120,36 +122,35 @@ const images = [
 .gallery-scroll-container {
   display: flex;
   flex-direction: row;
-  gap: 24px;
+  gap: clamp(12px, 2vw, 24px);
   overflow-x: auto;
   scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
   padding: 1.5rem 0.5rem;
   width: 100%;
-  
-  // Hide scrollbar for clean web standard look
-  scrollbar-width: none; // Firefox
-  &::-webkit-scrollbar {
-    display: none; // Chrome, Safari, Opera
-  }
-  
-  // Enable smooth dimming transition across the list on hover
-  &:hover {
-    .gallery-item-card {
-      opacity: 0.7;
-    }
+
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+
+  /* Desktop hover dimming */
+  @media (hover: hover) and (pointer: fine) {
+    &:hover .gallery-item-card { opacity: 0.7; }
   }
 }
 
 .gallery-item-card {
   flex: 0 0 auto;
-  height: 480px;
+  height: clamp(220px, 45vw, 480px);
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 30px rgba(26, 19, 13, 0.08);
   border: 1px solid rgba(201, 168, 76, 0.15);
   transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   background: #fcfaf7;
-  
+  scroll-snap-align: center;
+
   &:hover {
     opacity: 1 !important;
     transform: translateY(-8px) scale(1.02);
@@ -160,7 +161,7 @@ const images = [
 
 .gallery-img {
   height: 100%;
-  width: auto; // Auto width keeps the exact uncropped aspect ratio!
+  width: auto;
   object-fit: contain;
   display: block;
   pointer-events: none;
@@ -222,18 +223,6 @@ const images = [
 }
 
 @media (max-width: 900px) {
-  .gallery-strip-wrapper {
-    padding: 3rem 0;
-  }
-  .gallery-carousel-container {
-    padding: 0 2rem;
-  }
-  .gallery-scroll-container {
-    gap: 16px;
-  }
-  .gallery-item-card {
-    height: 320px;
-  }
   .nav-btn {
     width: 44px;
     height: 44px;
@@ -244,20 +233,6 @@ const images = [
 }
 
 @media (max-width: 640px) {
-  .gallery-strip-wrapper {
-    padding: 2.5rem 0;
-  }
-  .gallery-header {
-    margin-bottom: 2rem;
-    padding: 0 1.2rem;
-    .gallery-title { font-size: 1.8rem; }
-  }
-  .gallery-item-card {
-    height: 240px;
-  }
-  .gallery-carousel-container {
-    padding: 0 0.5rem;
-  }
   .nav-btn { display: none; }
 }
 </style>

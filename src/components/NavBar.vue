@@ -116,6 +116,9 @@ const mobileNav = (selector) => {
   max-width: 1280px;
   margin: 0 auto;
   padding: 0.9rem 3rem;
+  padding-top: calc(0.9rem + var(--safe-top));
+  padding-left: calc(3rem + var(--safe-left));
+  padding-right: calc(3rem + var(--safe-right));
 }
 
 .nav-logo {
@@ -217,27 +220,32 @@ const mobileNav = (selector) => {
 .hamburger {
   display: none;
   flex-direction: column;
-  justify-content: space-between;
-  width: 28px;
-  height: 20px;
-  background: none;
-  border: none;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px; /* WCAG touch target */
+  background: rgba(26, 19, 13, 0.25);
+  border: 1px solid rgba(245, 239, 230, 0.2);
+  border-radius: 10px;
   cursor: pointer;
-  padding: 0;
+  padding: 10px 8px;
   flex-shrink: 0;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 
   span {
     display: block;
+    width: 100%;
     height: 2px;
     background: var(--cream);
     border-radius: 2px;
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     transform-origin: center;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
 
-    &.open:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    &.open:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     &.open:nth-child(2) { opacity: 0; transform: scaleX(0); }
-    &.open:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+    &.open:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
   }
 }
 
@@ -253,12 +261,13 @@ const mobileNav = (selector) => {
   border-top: 1px solid rgba(201, 168, 76, 0.15);
 
   &.active {
-    max-height: 320px;
+    max-height: 400px;
   }
 
   ul {
     list-style: none;
-    padding: 1rem 2rem 1.5rem;
+    padding: 0.5rem 1.5rem 1rem;
+    padding-bottom: calc(1rem + var(--safe-bottom));
   }
 
   li {
@@ -268,15 +277,17 @@ const mobileNav = (selector) => {
 
   a {
     display: block;
-    padding: 1rem 0;
+    padding: 1.1rem 0.25rem; /* big tap target */
     color: var(--cream);
     text-decoration: none;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-family: 'Playfair Display', serif;
     letter-spacing: 0.5px;
     transition: color 0.2s ease;
+    min-height: 48px;
 
-    &:hover { color: var(--gold); }
+    &:hover, &:focus-visible { color: var(--gold); }
+    &:active { color: var(--gold); opacity: 0.7; }
   }
 }
 
@@ -284,6 +295,9 @@ const mobileNav = (selector) => {
 @media (max-width: 900px) {
   .nav-container {
     padding: 0.8rem 1.5rem;
+    padding-top: calc(0.8rem + var(--safe-top));
+    padding-left: calc(1.5rem + var(--safe-left));
+    padding-right: calc(1.5rem + var(--safe-right));
     gap: 1rem;
   }
   .logo-img { height: 42px; }
@@ -296,10 +310,28 @@ const mobileNav = (selector) => {
   .mobile-menu { display: block; }
 
   .nav-container {
-    padding: 0.75rem 1.2rem;
+    padding: 0.65rem 1rem;
+    padding-top: calc(0.65rem + var(--safe-top));
+    padding-left: calc(1rem + var(--safe-left));
+    padding-right: calc(1rem + var(--safe-right));
+    gap: 0.6rem;
   }
   .logo-img { height: 38px; }
 
-  .lang-selector { margin-left: auto; margin-right: 0.5rem; }
+  .lang-selector {
+    margin-left: auto;
+    gap: 0.3rem;
+  }
+  .lang-btn {
+    padding: 0.4rem 0.55rem;
+    font-size: 0.7rem;
+    min-height: 36px;
+    min-width: 36px;
+  }
+}
+
+@media (max-width: 360px) {
+  .logo-img { height: 34px; }
+  .lang-btn { padding: 0.35rem 0.5rem; font-size: 0.65rem; }
 }
 </style>

@@ -26,8 +26,8 @@ defineProps({
 // Outer wrapper that stacks both buttons vertically
 .float-buttons-container {
   position: fixed;
-  bottom: 2rem;
-  right: 2rem;
+  bottom: calc(2rem + var(--safe-bottom, 0px));
+  right: calc(2rem + var(--safe-right, 0px));
   z-index: 999;
   display: flex;
   flex-direction: column;
@@ -151,8 +151,9 @@ defineProps({
 
 @media (max-width: 600px) {
   .float-buttons-container {
-    bottom: 1.5rem;
-    right: 1.5rem;
+    bottom: calc(1rem + var(--safe-bottom, 0px));
+    right: calc(1rem + var(--safe-right, 0px));
+    gap: 0.55rem;
   }
 
   .instagram-float {
@@ -164,16 +165,28 @@ defineProps({
     width: 20px;
     height: 20px;
   }
-  
+
   .whatsapp-float {
-    height: 46px;
-    font-size: 0.95rem;
-    padding: 0 1.3rem;
+    height: 48px;
+    font-size: 0.9rem;
+    padding: 0 1.1rem;
+    gap: 0.5rem;
   }
-  
+
   .whatsapp-icon {
     width: 20px;
     height: 20px;
+  }
+
+  .whatsapp-popup {
+    display: none; /* free up space on small screens */
+  }
+}
+
+@media (max-width: 360px) {
+  .whatsapp-float {
+    padding: 0 0.85rem;
+    font-size: 0.85rem;
   }
 }
 

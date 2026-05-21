@@ -34,7 +34,8 @@ const scroll = (selector) => {
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 600px;
+  height: 100dvh; /* dynamic viewport height fixes iOS Safari address bar */
+  min-height: 540px;
   background: linear-gradient(135deg, rgba(26, 19, 13, 0.4), rgba(58, 90, 64, 0.3)), url('/IMG_9894.JPG') center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -42,73 +43,82 @@ const scroll = (selector) => {
   text-align: center;
   color: var(--cream);
   overflow: hidden;
-  
+  padding-top: var(--safe-top);
+
   .hero-bg {
     position: absolute;
     inset: 0;
-    background: linear-gradient(135deg, rgba(26, 19, 13, 0.4), rgba(58, 90, 64, 0.3)), url('/IMG_9894.JPG') center/cover no-repeat;
+    background: linear-gradient(135deg, rgba(26, 19, 13, 0.45), rgba(58, 90, 64, 0.35)), url('/IMG_9894.JPG') center/cover no-repeat;
     animation: subtle-zoom 20s ease-in-out infinite;
   }
-  
+
   .hero-content {
     position: relative;
     z-index: 2;
     max-width: 720px;
+    padding: 0 clamp(1rem, 4vw, 2rem);
     animation: fade-up 1s ease-out 0.2s both;
   }
-  
+
   .hero-tag {
-    font-size: 0.8rem;
-    letter-spacing: 2px;
+    font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+    letter-spacing: clamp(1.2px, 0.4vw, 2.5px);
     text-transform: uppercase;
     color: var(--gold);
-    margin-bottom: 1rem;
+    margin-bottom: clamp(0.75rem, 2vw, 1.2rem);
   }
-  
+
   .hero-title {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: var(--fs-h1);
     line-height: 1.05;
-    margin-bottom: 1rem;
-    letter-spacing: 1px;
-    
+    margin-bottom: clamp(0.75rem, 2vw, 1.2rem);
+    letter-spacing: clamp(0px, 0.2vw, 1px);
+    text-wrap: balance;
+
     em {
       color: var(--gold);
       font-style: italic;
     }
   }
-  
+
   .hero-sub {
-    font-size: 1.2rem;
+    font-size: clamp(0.95rem, 2.6vw, 1.2rem);
     font-weight: 300;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-    opacity: 0.9;
+    line-height: 1.6;
+    margin-bottom: clamp(1.5rem, 4vw, 2.2rem);
+    opacity: 0.92;
+    text-wrap: pretty;
   }
-  
+
   .hero-cta {
     display: inline-block;
-    padding: 1rem 2.5rem;
+    padding: clamp(0.85rem, 2.5vw, 1.05rem) clamp(1.6rem, 5vw, 2.6rem);
     border: 2px solid var(--gold);
     color: var(--gold);
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1rem;
+    font-size: clamp(0.85rem, 2.3vw, 1rem);
     letter-spacing: 1px;
     text-transform: uppercase;
     text-decoration: none;
+    background: rgba(26, 19, 13, 0.25);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     transition: all 0.3s ease;
     cursor: pointer;
-    
-    &:hover {
+    min-height: 48px; /* WCAG tap target */
+    line-height: 1.2;
+
+    &:hover, &:focus-visible {
       background: var(--gold);
       color: var(--dark);
     }
   }
-  
+
   .scroll-hint {
     position: absolute;
-    bottom: 2rem;
-    right: 3rem;
+    bottom: clamp(1.2rem, 3vh, 2rem);
+    right: clamp(1.5rem, 5vw, 3rem);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -119,7 +129,7 @@ const scroll = (selector) => {
     text-transform: uppercase;
     color: var(--cream);
   }
-  
+
   .scroll-line {
     width: 1px;
     height: 50px;
@@ -145,19 +155,16 @@ const scroll = (selector) => {
 
 @media (max-width: 900px) {
   .hero {
-    .hero-title { font-size: 2.8rem; }
-    .hero-sub { font-size: 1rem; }
     .scroll-hint { display: none; }
   }
 }
 
-@media (max-width: 640px) {
+/* On very short landscape mobile, lock to viewport so content always fits */
+@media (max-height: 520px) and (orientation: landscape) {
   .hero {
-    .hero-content { padding: 0 1.2rem; }
-    .hero-tag { font-size: 0.7rem; letter-spacing: 1.5px; }
-    .hero-title { font-size: 2.1rem; letter-spacing: 0; }
-    .hero-sub { font-size: 0.95rem; margin-bottom: 1.5rem; }
-    .hero-cta { padding: 0.8rem 1.8rem; font-size: 0.85rem; }
+    min-height: 100dvh;
+    .hero-title { font-size: clamp(1.6rem, 5vh, 2.5rem); }
+    .hero-sub { font-size: 0.85rem; margin-bottom: 1rem; }
   }
 }
 </style>

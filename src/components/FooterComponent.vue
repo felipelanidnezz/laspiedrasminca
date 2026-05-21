@@ -45,7 +45,8 @@ defineProps({
 .footer {
   background: var(--dark);
   color: var(--cream);
-  padding: 4rem 3rem 2rem;
+  padding: clamp(2.5rem, 6vw, 4rem) clamp(1.2rem, 4vw, 3rem) clamp(1.5rem, 3vw, 2rem);
+  padding-bottom: calc(clamp(1.5rem, 3vw, 2rem) + var(--safe-bottom));
   border-top: 1px solid rgba(201, 168, 76, 0.1);
   text-align: left;
 }
@@ -53,26 +54,28 @@ defineProps({
 .footer-top {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 3rem;
+  gap: clamp(1.8rem, 4vw, 4rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
 }
 
 .footer-brand-name {
   font-family: 'IM Fell English', serif;
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 4vw, 1.8rem);
   color: var(--gold);
   margin-bottom: 0.8rem;
+  line-height: 1.2;
 }
 
 .footer-brand-desc {
-  font-size: 0.95rem;
+  font-size: clamp(0.88rem, 2.3vw, 0.95rem);
   font-weight: 300;
-  line-height: 1.8;
-  color: rgba(245, 239, 230, 0.5);
+  line-height: 1.75;
+  color: rgba(245, 239, 230, 0.55);
+  text-wrap: pretty;
 }
 
 .footer-col-title {
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   letter-spacing: 2px;
   text-transform: uppercase;
   color: var(--gold);
@@ -81,21 +84,21 @@ defineProps({
 
 .footer-links {
   list-style: none;
-  
-  li {
-    margin-bottom: 0.6rem;
-  }
-  
+
+  li { margin-bottom: 0.1rem; }
+
   a {
-    font-size: 0.9rem;
+    display: inline-block;
+    padding: 0.5rem 0;
+    font-size: clamp(0.88rem, 2.3vw, 0.92rem);
     font-weight: 300;
-    color: rgba(245, 239, 230, 0.55);
+    color: rgba(245, 239, 230, 0.6);
     text-decoration: none;
     transition: color 0.2s;
-    
-    &:hover {
-      color: var(--cream);
-    }
+    min-height: 36px;
+
+    &:hover, &:focus-visible { color: var(--cream); }
+    &:active { color: var(--gold); }
   }
 }
 
@@ -103,54 +106,53 @@ defineProps({
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: clamp(1.4rem, 3vw, 2rem);
   border-top: 1px solid rgba(245, 239, 230, 0.07);
-  font-size: 0.8rem;
-  color: rgba(245, 239, 230, 0.3);
+  font-size: clamp(0.74rem, 2vw, 0.82rem);
+  color: rgba(245, 239, 230, 0.35);
 }
 
 .social-row {
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
 }
 
 .social-btn {
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(201, 168, 76, 0.25);
-  display: flex;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 8px;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   color: var(--gold);
   font-size: 0.9rem;
   text-decoration: none;
   transition: all 0.2s;
-  
-  &:hover {
-    background: rgba(201, 168, 76, 0.12);
+
+  &:hover, &:focus-visible {
+    background: rgba(201, 168, 76, 0.15);
     border-color: var(--gold);
+    transform: translateY(-2px);
   }
 }
 
 @media (max-width: 900px) {
   .footer-top {
     grid-template-columns: 1fr 1fr;
-    gap: 2rem;
   }
 }
 
-@media (max-width: 600px) {
-  .footer {
-    padding: 2rem 1.5rem;
-  }
-  
+@media (max-width: 560px) {
   .footer-top {
     grid-template-columns: 1fr;
+    gap: 1.6rem;
   }
-  
+
   .footer-bottom {
     flex-direction: column;
-    gap: 1rem;
     text-align: center;
   }
 }

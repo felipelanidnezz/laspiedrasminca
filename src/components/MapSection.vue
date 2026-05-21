@@ -57,85 +57,91 @@ defineProps({
 
 <style lang="scss" scoped>
 .map-section {
-  padding: 5rem 3rem;
+  padding: clamp(3rem, 7vw, 5rem) clamp(1rem, 4vw, 3rem);
   background: var(--cream);
   text-align: center;
   border-top: 1px solid rgba(201, 168, 76, 0.15);
-  
+
   .section-tag {
-    font-size: 0.75rem;
+    font-size: clamp(0.7rem, 1.8vw, 0.78rem);
     letter-spacing: 2px;
     text-transform: uppercase;
     color: var(--gold);
     margin-bottom: 1rem;
   }
-  
+
   .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
+    font-size: var(--fs-h2);
     color: var(--dark);
     margin-bottom: 1.5rem;
+    line-height: 1.15;
+    text-wrap: balance;
   }
-  
+
   .divider {
     width: 60px;
     height: 2px;
     background: linear-gradient(to right, var(--gold), transparent);
-    margin: 0 auto 3rem;
+    margin: 0 auto clamp(2rem, 5vw, 3rem);
   }
 }
 
 .map-container-grid {
   display: grid;
   grid-template-columns: 1.2fr 0.8fr;
-  gap: 3rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   max-width: 1200px;
   margin: 0 auto;
   text-align: left;
 }
 
 .map-card {
-  height: 480px;
+  height: clamp(280px, 50vw, 480px);
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid rgba(201, 168, 76, 0.25);
   box-shadow: 0 15px 40px rgba(26, 19, 13, 0.08);
-  
+
   .google-map-iframe {
     width: 100%;
     height: 100%;
+    display: block;
   }
 }
 
 .instructions-card {
   background: #fcfaf7;
-  padding: 2.5rem;
+  padding: clamp(1.4rem, 3.5vw, 2.5rem);
   border-radius: 12px;
   border: 1px solid rgba(201, 168, 76, 0.15);
   box-shadow: 0 10px 30px rgba(26, 19, 13, 0.04);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  gap: 1.2rem;
 }
 
 .instruction-block {
-  margin-bottom: 1.8rem;
-  
+  margin-bottom: clamp(1rem, 3vw, 1.8rem);
+
   &:last-of-type {
-    margin-bottom: 2rem;
+    margin-bottom: clamp(1rem, 3vw, 2rem);
   }
-  
+
   h3 {
     font-family: 'Playfair Display', serif;
-    font-size: 1.25rem;
+    font-size: clamp(1.05rem, 2.8vw, 1.25rem);
     color: var(--stone);
     margin-bottom: 0.5rem;
+    line-height: 1.3;
   }
-  
+
   p {
-    font-size: 0.95rem;
+    font-size: var(--fs-small);
     line-height: 1.6;
     color: rgba(26, 19, 13, 0.8);
+    text-wrap: pretty;
   }
 }
 
@@ -153,54 +159,28 @@ defineProps({
   text-decoration: none;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
   font-weight: 600;
-  font-size: 1rem;
-  padding: 0.9rem 1.8rem;
-  border-radius: 8px;
+  font-size: clamp(0.9rem, 2.4vw, 1rem);
+  padding: clamp(0.85rem, 2.4vw, 1rem) 1.5rem;
+  border-radius: 10px;
   transition: all 0.3s ease;
   border: 1px solid var(--stone);
-  
-  &:hover {
+  min-height: 50px;
+  line-height: 1.2;
+
+  &:hover, &:focus-visible {
     background: var(--gold);
     border-color: var(--gold);
     color: var(--dark) !important;
     transform: translateY(-2px);
     box-shadow: 0 6px 20px rgba(201, 168, 76, 0.25);
   }
-  
-  &:active {
-    transform: translateY(0);
-  }
+
+  &:active { transform: translateY(0); }
 }
 
 @media (max-width: 900px) {
-  .map-section {
-    padding: 3rem 1.5rem;
-  }
   .map-container-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-  .map-card {
-    height: 350px;
-  }
-  .instructions-card {
-    padding: 1.8rem;
-  }
-}
-
-@media (max-width: 640px) {
-  .map-section {
-    padding: 2.5rem 1rem;
-    .section-title { font-size: 1.9rem; }
-  }
-  .map-card {
-    height: 280px;
-  }
-  .instructions-card {
-    padding: 1.4rem 1.2rem;
-  }
-  .instruction-block h3 {
-    font-size: 1.1rem;
   }
 }
 </style>
