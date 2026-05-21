@@ -94,6 +94,14 @@ const mobileNav = (selector) => {
   &:hover { transform: scale(1.05); }
 }
 
+/* make the logo sit inside a small translucent rounded container */
+.nav-logo {
+  padding: 6px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
 .nav-links {
   display: flex;
   list-style: none;
@@ -134,8 +142,8 @@ const mobileNav = (selector) => {
 }
 
 .lang-btn {
-  background: transparent;
-  border: 1px solid rgba(201, 168, 76, 0.4);
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(201, 168, 76, 0.25);
   color: var(--cream);
   padding: 0.3rem 0.6rem;
   font-size: 0.75rem;
@@ -144,6 +152,7 @@ const mobileNav = (selector) => {
   font-family: 'Cormorant Garamond', serif;
   text-transform: uppercase;
   letter-spacing: 1px;
+  border-radius: 6px;
 
   &:hover {
     border-color: var(--gold);
