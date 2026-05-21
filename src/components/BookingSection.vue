@@ -18,7 +18,9 @@
         </div>
         <div class="contact-line">
           <span class="icon">📱</span>
-          <span>{{ lang === 'es' ? 'WhatsApp disponible' : 'WhatsApp available' }}</span>
+          <a href="https://wa.me/573152814134" target="_blank" rel="noopener" class="contact-link">
+            {{ lang === 'es' ? 'WhatsApp: +57 315 281 4134' : 'WhatsApp: +57 315 281 4134' }}
+          </a>
         </div>
         <div class="contact-line">
           <span class="icon">✉️</span>
@@ -64,7 +66,7 @@
           
           <!-- WhatsApp Button -->
           <a 
-            href="https://wa.me/+57 3152814134" 
+            href="https://wa.me/573152814134" 
             target="_blank" 
             rel="noopener" 
             class="booking-btn whatsapp"
@@ -152,6 +154,19 @@ defineProps({
   
   span:last-child {
     color: rgba(245, 239, 230, 0.9);
+  }
+
+  .contact-link {
+    color: rgba(245, 239, 230, 0.9);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    border-bottom: 1px dashed rgba(201, 168, 76, 0.35);
+    padding-bottom: 1px;
+
+    &:hover {
+      color: var(--gold);
+      border-bottom-color: var(--gold);
+    }
   }
 }
 
